@@ -319,6 +319,121 @@
             background: var(--leaf);
         }
 
+        .background-section {
+            padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(3rem, 8vw, 5rem);
+        }
+
+        .background-inner {
+            width: min(1180px, 100%);
+            margin: 0 auto;
+        }
+
+        .background-header {
+            max-width: 780px;
+            margin-bottom: 1.5rem;
+        }
+
+        .background-header h2 {
+            margin: 0;
+            font-size: clamp(2rem, 4.8vw, 4rem);
+            line-height: 1;
+        }
+
+        .background-topic {
+            margin-top: 1rem;
+            padding: clamp(1.25rem, 4vw, 2.4rem);
+            border: 1px solid rgba(20, 33, 61, 0.08);
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.74);
+            box-shadow: 0 16px 44px rgba(20, 33, 61, 0.09);
+        }
+
+        .background-topic h3 {
+            margin: 0 0 0.75rem;
+            font-size: clamp(1.6rem, 3.2vw, 2.45rem);
+            line-height: 1.05;
+        }
+
+        .background-topic h4 {
+            margin: 1.5rem 0 0.65rem;
+            color: var(--leaf);
+            font-size: clamp(1.15rem, 2vw, 1.45rem);
+        }
+
+        .background-topic p {
+            margin: 0;
+            color: var(--ink-soft);
+            font-size: 1.03rem;
+        }
+
+        .background-topic p + p {
+            margin-top: 1rem;
+        }
+
+        .topic-split {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 0.65fr);
+            gap: clamp(1.25rem, 4vw, 2.5rem);
+            align-items: start;
+        }
+
+        .discovery-layout {
+            display: grid;
+            gap: 1.4rem;
+        }
+
+        .figure-stack {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .discovery-figures {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .figure-card {
+            overflow: hidden;
+            border: 1px solid rgba(20, 33, 61, 0.08);
+            border-radius: 0.65rem;
+            background: var(--white);
+            box-shadow: 0 14px 32px rgba(20, 33, 61, 0.1);
+        }
+
+        .figure-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            cursor: zoom-in;
+        }
+
+        .figure-card figcaption {
+            padding: 0.75rem 0.9rem;
+            color: var(--ink-soft);
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .pathway-image {
+            margin-top: 1.2rem;
+        }
+
+        .pathway-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(20rem, 0.62fr);
+            gap: clamp(1.25rem, 4vw, 2.5rem);
+            align-items: start;
+        }
+
+        .pathway-layout .pathway-image {
+            margin-top: 0;
+        }
+
+        .pathway-image img {
+            max-height: 42rem;
+            object-fit: contain;
+            background: var(--white);
+        }
+
         .lab-section {
             padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(3rem, 8vw, 5rem);
         }
@@ -454,6 +569,62 @@
             color: rgba(255, 255, 255, 0.78);
         }
 
+        .image-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(1rem, 4vw, 3rem);
+            background: rgba(20, 33, 61, 0.86);
+        }
+
+        .image-lightbox.is-open {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: min(1100px, 100%);
+            max-height: 92vh;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 82vh;
+            justify-self: center;
+            border-radius: 0.65rem;
+            background: var(--white);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+        }
+
+        .lightbox-content p {
+            margin: 0;
+            color: var(--white);
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -0.85rem;
+            right: -0.85rem;
+            width: 2.6rem;
+            height: 2.6rem;
+            border: 0;
+            border-radius: 50%;
+            color: var(--ink);
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: 900;
+            line-height: 1;
+            background: var(--white);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.26);
+        }
+
         @media (max-width: 920px) {
             .topbar {
                 align-items: flex-start;
@@ -472,6 +643,14 @@
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
+            .topic-split {
+                grid-template-columns: 1fr;
+            }
+
+            .pathway-layout {
+                grid-template-columns: 1fr;
+            }
+
             .section-heading,
             .credits-inner,
             .lab-link-panel {
@@ -487,6 +666,7 @@
                 justify-self: start;
                 width: min(100%, 15rem);
             }
+
         }
 
         @media (max-width: 620px) {
@@ -505,6 +685,10 @@
             }
 
             .section-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .discovery-figures {
                 grid-template-columns: 1fr;
             }
         }
@@ -566,10 +750,10 @@
                         <h2>Home</h2>
                         <p>The title page anchors the website and introduces the project identity.</p>
                     </article>
-                    <article class="placeholder" id="background">
+                    <article class="placeholder">
                         <span class="placeholder-number">2</span>
                         <h2>Background</h2>
-                        <p>Placeholder for rapamycin, aging biology, Drosophila model context, and metabolism overview.</p>
+                        <p>Aging biology, rapamycin discovery, and the mTORC1 pathway context for this project.</p>
                     </article>
                     <article class="placeholder" id="experimental-design">
                         <span class="placeholder-number">3</span>
@@ -609,6 +793,68 @@
                 </div>
             </section>
 
+            <section class="background-section" id="background" aria-labelledby="background-title">
+                <div class="background-inner">
+                    <div class="background-header">
+                        <h2 id="background-title">Background</h2>
+                    </div>
+
+                    <article class="background-topic">
+                        <h3>Aging</h3>
+                        <p>Aging, also known as senescence, can cause genomic instability, mitochondrial dysfunction, and loss of proteostasis. These biological changes contribute to age-related diseases and conditions such as cancer, diabetes, declining immune function, atherosclerosis, and other disorders associated with the aging process.</p>
+                    </article>
+
+                    <article class="background-topic">
+                        <div class="discovery-layout">
+                            <div>
+                                <h3>Discovery</h3>
+                                <p>Rapamycin, a small-molecule drug, was isolated from <em>Streptomyces hygroscopicus</em> from Rapa Nui island in the 1970s. It was approved by the FDA to prevent rejection after organ transplantation in the late 1990s. More recently, researchers have been investigating rapamycin as a possible treatment for age-related diseases, but its effects across different organs as a whole are still not fully clear.</p>
+                            </div>
+                            <div class="figure-stack discovery-figures">
+                                <figure class="figure-card">
+                                    <img src="assets/background/images/rapa_nui.jpg" alt="Rapa Nui island landscape">
+                                    <figcaption>Rapa Nui island, also known as Easter Island.</figcaption>
+                                </figure>
+                                <figure class="figure-card">
+                                    <img src="assets/background/images/rapamycin_structure.png" alt="Chemical structure of rapamycin">
+                                    <figcaption>The chemical structure for Rapamycin.</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="background-topic">
+                        <div class="pathway-layout">
+                            <div>
+                                <h3>Pathway</h3>
+
+                                <h4>mTOR overview</h4>
+                                <p>The mechanistic target of rapamycin pathway, or mTOR pathway, is a central regulator of cell growth, metabolism, and survival. This pathway functions through two major protein complexes: mTORC1 and mTORC2. In this project, the focus is primarily on mTORC1 because it is highly sensitive to acute rapamycin treatment, whereas mTORC2 is generally affected only after long-term or high-dose rapamycin exposure.</p>
+                                <p>mTORC1 acts as a major sensor of nutrient and energy abundance, integrating signals from amino acids, glucose, energy status, and growth factors to determine whether the cell should promote growth or conserve resources. Because of this role, rapamycin inhibition of mTORC1 can partially mimic calorie restriction: even when nutrient intake remains high, mTORC1 signaling is reduced, causing cells to shift toward a metabolic state more similar to low-nutrient conditions.</p>
+
+                                <h4>mTORC1 Protein Structure</h4>
+                                <p>Structurally, mTORC1 contains several core components. The central component is mTOR, a kinase that phosphorylates downstream targets to regulate cellular metabolism and biosynthesis. Raptor, or regulatory-associated protein of mTOR, is the defining scaffolding protein of mTORC1 and helps recruit downstream substrates for phosphorylation. mLST8 is a structural subunit shared by both mTORC1 and mTORC2 and contributes to the stability of the complex.</p>
+                                <p>Rapamycin inhibits mTORC1 by first binding to the intracellular protein FKBP12. The rapamycin-FKBP12 complex then interacts with the FRB domain of mTOR, leading to acute inhibition of mTORC1 activity.</p>
+
+                                <h4>Dive Deeper to mTORC1 Signaling</h4>
+                                <p>mTORC1 is activated by both growth factor and nutrient signaling. When growth factors are detected, the PI3K-AKT pathway becomes activated. AKT then phosphorylates and inhibits the TSC1/TSC2 complex, which normally acts as a negative regulator of mTORC1. When TSC1/TSC2 is inhibited, Rheb accumulates in its active GTP-bound form at the lysosomal surface, where it directly activates mTORC1. At the same time, amino acid sensing activates the Rag GTPases, which recruit mTORC1 to the lysosomal surface through interactions involving Raptor. This lysosomal localization allows mTORC1 to encounter active Rheb and become fully activated.</p>
+                                <p>Once activated, mTORC1 promotes anabolic metabolism. It phosphorylates ribosomal protein S6 kinase, or S6K, which enhances ribosome biogenesis and protein synthesis. It also phosphorylates 4E-BP1, causing the release of the translation initiation factor eIF4E and increasing cap-dependent translation. In addition, mTORC1 phosphorylates autophagy-related proteins such as ULK1 and ATG13, suppressing autophagy under nutrient-rich conditions. Through these downstream effects, active mTORC1 shifts the cell toward growth, protein synthesis, lipid synthesis, nucleotide production, and overall biosynthetic activity.</p>
+                            </div>
+                            <div class="figure-stack">
+                                <figure class="figure-card pathway-image">
+                                    <img src="assets/background/images/mTORC1_structure.png" alt="Simplified mTORC1 protein structure overview">
+                                    <figcaption>mTORC1 protein structure overview simplified.</figcaption>
+                                </figure>
+                                <figure class="figure-card pathway-image">
+                                    <img src="assets/background/images/mTORC1.png" alt="Overview of the mTORC1 signaling pathway">
+                                    <figcaption>The overview of mTORC1 signaling pathway.</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
             <section class="lab-section" id="lab" aria-labelledby="lab-title">
                 <div class="lab-inner">
                     <div class="section-heading">
@@ -642,5 +888,47 @@
             </div>
         </footer>
     </div>
+    <div class="image-lightbox" id="image-lightbox" aria-hidden="true" role="dialog" aria-label="Expanded image view">
+        <div class="lightbox-content">
+            <button class="lightbox-close" type="button" aria-label="Close expanded image">&times;</button>
+            <img src="" alt="">
+            <p></p>
+        </div>
+    </div>
+    <script>
+        const lightbox = document.querySelector("#image-lightbox");
+        const lightboxImage = lightbox.querySelector("img");
+        const lightboxCaption = lightbox.querySelector("p");
+        const closeLightbox = lightbox.querySelector(".lightbox-close");
+
+        document.querySelectorAll(".figure-card img").forEach((image) => {
+            image.addEventListener("click", () => {
+                const caption = image.closest("figure")?.querySelector("figcaption")?.textContent || image.alt;
+                lightboxImage.src = image.src;
+                lightboxImage.alt = image.alt;
+                lightboxCaption.textContent = caption;
+                lightbox.classList.add("is-open");
+                lightbox.setAttribute("aria-hidden", "false");
+            });
+        });
+
+        function hideLightbox() {
+            lightbox.classList.remove("is-open");
+            lightbox.setAttribute("aria-hidden", "true");
+            lightboxImage.src = "";
+        }
+
+        closeLightbox.addEventListener("click", hideLightbox);
+        lightbox.addEventListener("click", (event) => {
+            if (event.target === lightbox) {
+                hideLightbox();
+            }
+        });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+                hideLightbox();
+            }
+        });
+    </script>
 </body>
 </html>

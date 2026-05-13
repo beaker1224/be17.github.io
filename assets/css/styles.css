@@ -427,6 +427,47 @@
             background: var(--white);
         }
 
+        .content-topic {
+            margin-top: 1rem;
+            padding: clamp(1.25rem, 4vw, 2.4rem);
+            border: 1px solid rgba(20, 33, 61, 0.08);
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.74);
+            box-shadow: 0 16px 44px rgba(20, 33, 61, 0.09);
+        }
+
+        .content-topic h2 {
+            margin: 0 0 0.75rem;
+            font-size: clamp(1.6rem, 3.2vw, 2.45rem);
+            line-height: 1.05;
+        }
+
+        .content-topic h3 {
+            margin: 1.5rem 0 0.65rem;
+            color: var(--leaf);
+            font-size: clamp(1.15rem, 2vw, 1.45rem);
+        }
+
+        .content-topic p {
+            margin: 0;
+            color: var(--ink-soft);
+            font-size: 1.03rem;
+        }
+
+        .organ-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .organ-figures {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            margin-top: 1.2rem;
+        }
+
+        .overview-figure {
+            margin-top: 1.2rem;
+        }
+
         .lab-section {
             padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(3rem, 8vw, 5rem);
         }
@@ -518,22 +559,19 @@
             aspect-ratio: 1;
             display: grid;
             place-items: center;
-            border-radius: 50%;
-            color: var(--white);
-            text-align: center;
-            background:
-                radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.32), transparent 4rem),
-                conic-gradient(from 160deg, var(--leaf), var(--gold), var(--coral), var(--leaf));
+            overflow: hidden;
+            border: 1px solid rgba(20, 33, 61, 0.08);
+            border-radius: 0.75rem;
+            background: var(--white);
             box-shadow: 0 24px 54px rgba(20, 33, 61, 0.18);
         }
 
-        .lab-badge span {
+        .lab-badge img {
             display: block;
-            max-width: 12rem;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(2rem, 4vw, 3.8rem);
-            font-weight: 700;
-            line-height: 0.95;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 1rem;
         }
 
 
@@ -682,6 +720,10 @@
             }
 
             .discovery-figures {
+                grid-template-columns: 1fr;
+            }
+
+            .organ-figures {
                 grid-template-columns: 1fr;
             }
         }

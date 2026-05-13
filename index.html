@@ -1,6 +1,457 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group 17 | Rapamycin Metabolism Atlas</title>
+    <style>
+        :root {
+            --ink: #14213d;
+            --ink-soft: #40506f;
+            --paper: #f7f8f3;
+            --mist: #e8efe7;
+            --leaf: #2d6a4f;
+            --moss: #5b8c5a;
+            --gold: #d4a72c;
+            --coral: #c8553d;
+            --white: #ffffff;
+            --shadow: 0 22px 70px rgba(20, 33, 61, 0.16);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.6;
+            background:
+                radial-gradient(circle at 12% 18%, rgba(212, 167, 44, 0.18), transparent 24rem),
+                radial-gradient(circle at 88% 8%, rgba(45, 106, 79, 0.18), transparent 26rem),
+                linear-gradient(135deg, #fbfbf7 0%, var(--paper) 50%, #eaf0eb 100%);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .site-shell {
+            min-height: 100vh;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.85rem clamp(1rem, 4vw, 3rem);
+            border-bottom: 1px solid rgba(20, 33, 61, 0.08);
+            background: rgba(247, 248, 243, 0.84);
+            backdrop-filter: blur(18px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: max-content;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 2.25rem;
+            height: 2.25rem;
+            place-items: center;
+            border-radius: 50%;
+            color: var(--white);
+            background: conic-gradient(from 180deg, var(--leaf), var(--gold), var(--coral), var(--leaf));
+            box-shadow: 0 10px 24px rgba(45, 106, 79, 0.28);
+        }
+
+        .nav-scroll {
+            display: flex;
+            gap: 0.55rem;
+            max-width: 100%;
+            overflow-x: auto;
+            padding: 0.2rem 0.05rem;
+            scrollbar-width: thin;
+        }
+
+        .nav-scroll a {
+            flex: 0 0 auto;
+            padding: 0.55rem 0.9rem;
+            border: 1px solid rgba(20, 33, 61, 0.1);
+            border-radius: 999px;
+            color: var(--ink-soft);
+            font-size: 0.92rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.64);
+            transition: transform 160ms ease, color 160ms ease, background 160ms ease, border-color 160ms ease;
+        }
+
+        .nav-scroll a:hover,
+        .nav-scroll a:focus-visible {
+            color: var(--white);
+            outline: none;
+            border-color: transparent;
+            background: var(--leaf);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            position: relative;
+            min-height: calc(100vh - 4.2rem);
+            display: grid;
+            align-items: center;
+            padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 5vw, 5rem);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: clamp(1rem, 3vw, 2rem);
+            pointer-events: none;
+            border: 1px solid rgba(20, 33, 61, 0.08);
+            border-radius: 2rem;
+            background:
+                linear-gradient(120deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2)),
+                repeating-linear-gradient(90deg, rgba(45, 106, 79, 0.06) 0 1px, transparent 1px 8.5rem);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: min(1180px, 100%);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1.12fr) minmax(18rem, 0.55fr);
+            gap: clamp(2rem, 6vw, 5rem);
+            align-items: center;
+        }
+
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            width: fit-content;
+            margin: 0 0 1.1rem;
+            padding: 0.42rem 0.75rem;
+            border: 1px solid rgba(45, 106, 79, 0.22);
+            border-radius: 999px;
+            color: var(--leaf);
+            font-size: 0.86rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.72);
+        }
+
+        .kicker::before {
+            content: "";
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 0 0.28rem rgba(212, 167, 44, 0.16);
+        }
+
+        h1 {
+            max-width: 980px;
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(2.55rem, 6.4vw, 6.7rem);
+            line-height: 0.96;
+            letter-spacing: 0;
+        }
+
+        .title-accent {
+            color: var(--leaf);
+        }
+
+        .subtitle {
+            max-width: 760px;
+            margin: 1.3rem 0 0;
+            color: var(--ink-soft);
+            font-size: clamp(1.05rem, 2vw, 1.35rem);
+        }
+
+        .team-line {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .team-line span {
+            display: inline-flex;
+            align-items: center;
+            min-height: 2.65rem;
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            font-weight: 800;
+            background: var(--white);
+            box-shadow: 0 12px 28px rgba(20, 33, 61, 0.1);
+        }
+
+        .hero-panel {
+            padding: 1.1rem;
+            border-radius: 1.4rem;
+            background: rgba(255, 255, 255, 0.72);
+            box-shadow: 0 18px 50px rgba(20, 33, 61, 0.13);
+        }
+
+        .atlas-card {
+            min-height: 24rem;
+            display: grid;
+            align-content: space-between;
+            padding: clamp(1.25rem, 3vw, 2rem);
+            border-radius: 1rem;
+            color: var(--white);
+            background:
+                linear-gradient(145deg, rgba(20, 33, 61, 0.1), rgba(20, 33, 61, 0.44)),
+                radial-gradient(circle at 30% 24%, rgba(212, 167, 44, 0.9), transparent 9rem),
+                radial-gradient(circle at 78% 28%, rgba(200, 85, 61, 0.76), transparent 8rem),
+                radial-gradient(circle at 48% 78%, rgba(91, 140, 90, 0.95), transparent 12rem),
+                #173b34;
+            overflow: hidden;
+        }
+
+        .orbit {
+            position: relative;
+            height: 13rem;
+        }
+
+        .orbit span {
+            position: absolute;
+            display: block;
+            border: 1px solid rgba(255, 255, 255, 0.42);
+            border-radius: 50%;
+        }
+
+        .orbit span:nth-child(1) {
+            inset: 0.8rem 1.6rem 1.3rem 0.4rem;
+        }
+
+        .orbit span:nth-child(2) {
+            inset: 2.3rem 0.2rem 0.4rem 2.4rem;
+            transform: rotate(-18deg);
+        }
+
+        .orbit span:nth-child(3) {
+            width: 3.6rem;
+            height: 3.6rem;
+            top: 4.7rem;
+            left: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow:
+                -5.8rem -2.1rem 0 -0.9rem rgba(255, 255, 255, 0.62),
+                5rem 1.8rem 0 -1rem rgba(255, 255, 255, 0.7),
+                1.9rem -4.4rem 0 -1.08rem rgba(255, 255, 255, 0.62);
+        }
+
+        .atlas-card h2 {
+            margin: 0;
+            font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+            line-height: 1.05;
+        }
+
+        .atlas-card p {
+            margin: 0.65rem 0 0;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .section-wrap {
+            padding: clamp(3rem, 8vw, 5rem) clamp(1.25rem, 5vw, 5rem);
+        }
+
+        .section-grid {
+            width: min(1180px, 100%);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .placeholder {
+            min-height: 13rem;
+            padding: 1.35rem;
+            border: 1px solid rgba(20, 33, 61, 0.08);
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 14px 38px rgba(20, 33, 61, 0.08);
+        }
+
+        .placeholder h2 {
+            margin: 0 0 0.75rem;
+            font-size: 1.15rem;
+            line-height: 1.25;
+        }
+
+        .placeholder p {
+            margin: 0;
+            color: var(--ink-soft);
+            font-size: 0.97rem;
+        }
+
+        .placeholder-number {
+            display: inline-grid;
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: 1.2rem;
+            place-items: center;
+            border-radius: 50%;
+            color: var(--white);
+            font-weight: 900;
+            background: var(--leaf);
+        }
+
+        @media (max-width: 920px) {
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-panel {
+                max-width: 32rem;
+            }
+
+            .section-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 620px) {
+            .hero {
+                min-height: auto;
+                padding-top: 2rem;
+            }
+
+            .hero::before {
+                inset: 0.65rem;
+                border-radius: 1.2rem;
+            }
+
+            .brand {
+                min-width: 0;
+            }
+
+            .section-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
 <body>
-    <h1>Hello World! My GitHub site is live.</h1>
+    <div class="site-shell">
+        <header class="topbar" aria-label="Project navigation">
+            <a class="brand" href="#home" aria-label="Go to home section">
+                <span class="brand-mark" aria-hidden="true">17</span>
+                <span>Rapamycin Atlas</span>
+            </a>
+            <nav class="nav-scroll" aria-label="Main sections">
+                <a href="#home">Home</a>
+                <a href="#background">Background</a>
+                <a href="#experimental-design">Experimental Design</a>
+                <a href="#data-pipeline">Data Pipeline</a>
+                <a href="#results-discussion">Results and Discussion</a>
+                <a href="#future">Future</a>
+                <a href="#team">Team</a>
+                <a href="#lab">Lab</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero" id="home">
+                <div class="hero-content">
+                    <div>
+                        <p class="kicker">Group 17 Research Project</p>
+                        <h1>Atlas of <span class="title-accent">Metabolisms</span> from Different Organs affected by Rapamycin in Drosophila Aging Process</h1>
+                        <p class="subtitle">A visual research site for organizing the background, experiment design, analysis pipeline, findings, and next steps of the rapamycin aging project.</p>
+                        <div class="team-line" aria-label="Team members">
+                            <span>Shuo Qin</span>
+                            <span>Adam Takaoglu</span>
+                        </div>
+                    </div>
+
+                    <aside class="hero-panel" aria-label="Metabolism atlas visual">
+                        <div class="atlas-card">
+                            <div class="orbit" aria-hidden="true">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div>
+                                <h2>Organ-specific metabolic signatures</h2>
+                                <p>Rapamycin response across aging Drosophila tissues</p>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <section class="section-wrap" aria-label="Page placeholders">
+                <div class="section-grid">
+                    <article class="placeholder">
+                        <span class="placeholder-number">1</span>
+                        <h2>Home</h2>
+                        <p>The title page anchors the website and introduces the project identity.</p>
+                    </article>
+                    <article class="placeholder" id="background">
+                        <span class="placeholder-number">2</span>
+                        <h2>Background</h2>
+                        <p>Placeholder for rapamycin, aging biology, Drosophila model context, and metabolism overview.</p>
+                    </article>
+                    <article class="placeholder" id="experimental-design">
+                        <span class="placeholder-number">3</span>
+                        <h2>Experimental Design</h2>
+                        <p>Placeholder for sample groups, organ selection, treatment conditions, controls, and study timeline.</p>
+                    </article>
+                    <article class="placeholder" id="data-pipeline">
+                        <span class="placeholder-number">4</span>
+                        <h2>Data Pipeline</h2>
+                        <p>Placeholder for preprocessing, normalization, statistical testing, annotation, and visualization steps.</p>
+                    </article>
+                    <article class="placeholder" id="results-discussion">
+                        <span class="placeholder-number">5</span>
+                        <h2>Results and Discussion</h2>
+                        <p>Placeholder for metabolite trends, pathway interpretation, organ comparisons, and biological insights.</p>
+                    </article>
+                    <article class="placeholder" id="future">
+                        <span class="placeholder-number">6</span>
+                        <h2>Future</h2>
+                        <p>Placeholder for validation experiments, additional analyses, and project extensions.</p>
+                    </article>
+                    <article class="placeholder" id="team">
+                        <span class="placeholder-number">7</span>
+                        <h2>Team</h2>
+                        <p>Placeholder for contributor roles, bios, and acknowledgments.</p>
+                    </article>
+                    <article class="placeholder" id="lab">
+                        <span class="placeholder-number">8</span>
+                        <h2>Lab</h2>
+                        <p>Placeholder for lab affiliation, resources, and related research links.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
 </body>
 </html>

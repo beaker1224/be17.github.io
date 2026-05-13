@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background | Group 17 Rapamycin Atlas</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="site-shell">
+        <header class="topbar" aria-label="Project navigation">
+            <a class="brand" href="index.html" aria-label="Go to home page">
+                <span class="brand-mark" aria-hidden="true">17</span>
+                <span>Rapamycin Atlas</span>
+            </a>
+            <nav class="nav-scroll" aria-label="Main pages">
+                <a href="index.html">Home</a>
+                <a href="background.html" class="is-active" aria-current="page">Background</a>
+                <a href="experimental-design.html">Experimental Design</a>
+                <a href="data-pipeline.html">Data Pipeline</a>
+                <a href="results-discussion.html">Results and Discussion</a>
+                <a href="future.html">Future</a>
+                <a href="team.html">Team</a>
+                <a href="lab.html">Lab</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </header>
+        <main class="page-main">
+            <section class="background-section" id="background" aria-labelledby="background-title">
+                <div class="background-inner">
+                    <div class="background-header">
+                        <h2 id="background-title">Background</h2>
+                    </div>
+
+                    <article class="background-topic">
+                        <h3>Aging</h3>
+                        <p>Aging, also known as senescence, can cause genomic instability, mitochondrial dysfunction, and loss of proteostasis. These biological changes contribute to age-related diseases and conditions such as cancer, diabetes, declining immune function, atherosclerosis, and other disorders associated with the aging process.</p>
+                    </article>
+
+                    <article class="background-topic">
+                        <div class="discovery-layout">
+                            <div>
+                                <h3>Discovery</h3>
+                                <p>Rapamycin, a small-molecule drug, was isolated from <em>Streptomyces hygroscopicus</em> from Rapa Nui island in the 1970s. It was approved by the FDA to prevent rejection after organ transplantation in the late 1990s. More recently, researchers have been investigating rapamycin as a possible treatment for age-related diseases, but its effects across different organs as a whole are still not fully clear.</p>
+                            </div>
+                            <div class="figure-stack discovery-figures">
+                                <figure class="figure-card">
+                                    <img src="assets/background/images/rapa_nui.jpg" alt="Rapa Nui island landscape">
+                                    <figcaption>Rapa Nui island, also known as Easter Island.</figcaption>
+                                </figure>
+                                <figure class="figure-card">
+                                    <img src="assets/background/images/rapamycin_structure.png" alt="Chemical structure of rapamycin">
+                                    <figcaption>The chemical structure for Rapamycin.</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="background-topic">
+                        <div class="pathway-layout">
+                            <div>
+                                <h3>Pathway</h3>
+
+                                <h4>mTOR overview</h4>
+                                <p>The mechanistic target of rapamycin pathway, or mTOR pathway, is a central regulator of cell growth, metabolism, and survival. This pathway functions through two major protein complexes: mTORC1 and mTORC2. In this project, the focus is primarily on mTORC1 because it is highly sensitive to acute rapamycin treatment, whereas mTORC2 is generally affected only after long-term or high-dose rapamycin exposure.</p>
+                                <p>mTORC1 acts as a major sensor of nutrient and energy abundance, integrating signals from amino acids, glucose, energy status, and growth factors to determine whether the cell should promote growth or conserve resources. Because of this role, rapamycin inhibition of mTORC1 can partially mimic calorie restriction: even when nutrient intake remains high, mTORC1 signaling is reduced, causing cells to shift toward a metabolic state more similar to low-nutrient conditions.</p>
+
+                                <h4>mTORC1 Protein Structure</h4>
+                                <p>Structurally, mTORC1 contains several core components. The central component is mTOR, a kinase that phosphorylates downstream targets to regulate cellular metabolism and biosynthesis. Raptor, or regulatory-associated protein of mTOR, is the defining scaffolding protein of mTORC1 and helps recruit downstream substrates for phosphorylation. mLST8 is a structural subunit shared by both mTORC1 and mTORC2 and contributes to the stability of the complex.</p>
+                                <p>Rapamycin inhibits mTORC1 by first binding to the intracellular protein FKBP12. The rapamycin-FKBP12 complex then interacts with the FRB domain of mTOR, leading to acute inhibition of mTORC1 activity.</p>
+
+                                <h4>Dive Deeper to mTORC1 Signaling</h4>
+                                <p>mTORC1 is activated by both growth factor and nutrient signaling. When growth factors are detected, the PI3K-AKT pathway becomes activated. AKT then phosphorylates and inhibits the TSC1/TSC2 complex, which normally acts as a negative regulator of mTORC1. When TSC1/TSC2 is inhibited, Rheb accumulates in its active GTP-bound form at the lysosomal surface, where it directly activates mTORC1. At the same time, amino acid sensing activates the Rag GTPases, which recruit mTORC1 to the lysosomal surface through interactions involving Raptor. This lysosomal localization allows mTORC1 to encounter active Rheb and become fully activated.</p>
+                                <p>Once activated, mTORC1 promotes anabolic metabolism. It phosphorylates ribosomal protein S6 kinase, or S6K, which enhances ribosome biogenesis and protein synthesis. It also phosphorylates 4E-BP1, causing the release of the translation initiation factor eIF4E and increasing cap-dependent translation. In addition, mTORC1 phosphorylates autophagy-related proteins such as ULK1 and ATG13, suppressing autophagy under nutrient-rich conditions. Through these downstream effects, active mTORC1 shifts the cell toward growth, protein synthesis, lipid synthesis, nucleotide production, and overall biosynthetic activity.</p>
+                            </div>
+                            <div class="figure-stack">
+                                <figure class="figure-card pathway-image">
+                                    <img src="assets/background/images/mTORC1_structure.png" alt="Simplified mTORC1 protein structure overview">
+                                    <figcaption>mTORC1 protein structure overview simplified.</figcaption>
+                                </figure>
+                                <figure class="figure-card pathway-image">
+                                    <img src="assets/background/images/mTORC1.png" alt="Overview of the mTORC1 signaling pathway">
+                                    <figcaption>The overview of mTORC1 signaling pathway.</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+        <footer class="credits" aria-labelledby="credits-title">
+            <div class="credits-inner">
+                <h2 id="credits-title">Credits</h2>
+                <p>Credit to Codex for website building and credit to BioRender for image generation.</p>
+            </div>
+        </footer>
+    </div>
+    <div class="image-lightbox" id="image-lightbox" aria-hidden="true" role="dialog" aria-label="Expanded image view">
+        <div class="lightbox-content">
+            <button class="lightbox-close" type="button" aria-label="Close expanded image">&times;</button>
+            <img src="" alt="">
+            <p></p>
+        </div>
+    </div>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

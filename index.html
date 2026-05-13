@@ -1,719 +1,30 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group 17 | Rapamycin Metabolism Atlas</title>
-    <style>
-        :root {
-            --ink: #14213d;
-            --ink-soft: #40506f;
-            --paper: #f7f8f3;
-            --mist: #e8efe7;
-            --leaf: #2d6a4f;
-            --moss: #5b8c5a;
-            --gold: #d4a72c;
-            --coral: #c8553d;
-            --white: #ffffff;
-            --shadow: 0 22px 70px rgba(20, 33, 61, 0.16);
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            color: var(--ink);
-            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            line-height: 1.6;
-            background:
-                radial-gradient(circle at 12% 18%, rgba(212, 167, 44, 0.18), transparent 24rem),
-                radial-gradient(circle at 88% 8%, rgba(45, 106, 79, 0.18), transparent 26rem),
-                linear-gradient(135deg, #fbfbf7 0%, var(--paper) 50%, #eaf0eb 100%);
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .site-shell {
-            min-height: 100vh;
-        }
-
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            padding: 0.85rem clamp(1rem, 4vw, 3rem);
-            border-bottom: 1px solid rgba(20, 33, 61, 0.08);
-            background: rgba(247, 248, 243, 0.84);
-            backdrop-filter: blur(18px);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            min-width: max-content;
-            font-weight: 800;
-            letter-spacing: 0.02em;
-        }
-
-        .brand-mark {
-            display: grid;
-            width: 2.25rem;
-            height: 2.25rem;
-            place-items: center;
-            border-radius: 50%;
-            color: var(--white);
-            background: conic-gradient(from 180deg, var(--leaf), var(--gold), var(--coral), var(--leaf));
-            box-shadow: 0 10px 24px rgba(45, 106, 79, 0.28);
-        }
-
-        .nav-scroll {
-            display: flex;
-            gap: 0.55rem;
-            max-width: 100%;
-            overflow-x: auto;
-            padding: 0.2rem 0.05rem;
-            scrollbar-width: thin;
-        }
-
-        .nav-scroll a {
-            flex: 0 0 auto;
-            padding: 0.55rem 0.9rem;
-            border: 1px solid rgba(20, 33, 61, 0.1);
-            border-radius: 999px;
-            color: var(--ink-soft);
-            font-size: 0.92rem;
-            font-weight: 700;
-            background: rgba(255, 255, 255, 0.64);
-            transition: transform 160ms ease, color 160ms ease, background 160ms ease, border-color 160ms ease;
-        }
-
-        .nav-scroll a:hover,
-        .nav-scroll a:focus-visible {
-            color: var(--white);
-            outline: none;
-            border-color: transparent;
-            background: var(--leaf);
-            transform: translateY(-2px);
-        }
-
-        .hero {
-            position: relative;
-            min-height: calc(100vh - 4.2rem);
-            display: grid;
-            align-items: center;
-            padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 5vw, 5rem);
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            inset: clamp(1rem, 3vw, 2rem);
-            pointer-events: none;
-            border: 1px solid rgba(20, 33, 61, 0.08);
-            border-radius: 2rem;
-            background:
-                linear-gradient(120deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2)),
-                repeating-linear-gradient(90deg, rgba(45, 106, 79, 0.06) 0 1px, transparent 1px 8.5rem);
-            box-shadow: var(--shadow);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            width: min(1180px, 100%);
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: minmax(0, 1.12fr) minmax(18rem, 0.55fr);
-            gap: clamp(2rem, 6vw, 5rem);
-            align-items: center;
-        }
-
-        .kicker {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.55rem;
-            width: fit-content;
-            margin: 0 0 1.1rem;
-            padding: 0.42rem 0.75rem;
-            border: 1px solid rgba(45, 106, 79, 0.22);
-            border-radius: 999px;
-            color: var(--leaf);
-            font-size: 0.86rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.72);
-        }
-
-        .kicker::before {
-            content: "";
-            width: 0.55rem;
-            height: 0.55rem;
-            border-radius: 50%;
-            background: var(--gold);
-            box-shadow: 0 0 0 0.28rem rgba(212, 167, 44, 0.16);
-        }
-
-        h1 {
-            max-width: 980px;
-            margin: 0;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(2.55rem, 6.4vw, 6.7rem);
-            line-height: 0.96;
-            letter-spacing: 0;
-        }
-
-        .title-accent {
-            color: var(--leaf);
-        }
-
-        .subtitle {
-            max-width: 760px;
-            margin: 1.3rem 0 0;
-            color: var(--ink-soft);
-            font-size: clamp(1.05rem, 2vw, 1.35rem);
-        }
-
-        .team-line {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 2rem;
-        }
-
-        .team-line span {
-            display: inline-flex;
-            align-items: center;
-            min-height: 2.65rem;
-            padding: 0.55rem 0.9rem;
-            border-radius: 999px;
-            font-weight: 800;
-            background: var(--white);
-            box-shadow: 0 12px 28px rgba(20, 33, 61, 0.1);
-        }
-
-        .hero-panel {
-            padding: 1.1rem;
-            border-radius: 1.4rem;
-            background: rgba(255, 255, 255, 0.72);
-            box-shadow: 0 18px 50px rgba(20, 33, 61, 0.13);
-        }
-
-        .atlas-card {
-            min-height: 24rem;
-            display: grid;
-            align-content: space-between;
-            padding: clamp(1.25rem, 3vw, 2rem);
-            border-radius: 1rem;
-            color: var(--white);
-            background:
-                linear-gradient(145deg, rgba(20, 33, 61, 0.1), rgba(20, 33, 61, 0.44)),
-                radial-gradient(circle at 30% 24%, rgba(212, 167, 44, 0.9), transparent 9rem),
-                radial-gradient(circle at 78% 28%, rgba(200, 85, 61, 0.76), transparent 8rem),
-                radial-gradient(circle at 48% 78%, rgba(91, 140, 90, 0.95), transparent 12rem),
-                #173b34;
-            overflow: hidden;
-        }
-
-        .orbit {
-            position: relative;
-            height: 13rem;
-        }
-
-        .orbit span {
-            position: absolute;
-            display: block;
-            border: 1px solid rgba(255, 255, 255, 0.42);
-            border-radius: 50%;
-        }
-
-        .orbit span:nth-child(1) {
-            inset: 0.8rem 1.6rem 1.3rem 0.4rem;
-        }
-
-        .orbit span:nth-child(2) {
-            inset: 2.3rem 0.2rem 0.4rem 2.4rem;
-            transform: rotate(-18deg);
-        }
-
-        .orbit span:nth-child(3) {
-            width: 3.6rem;
-            height: 3.6rem;
-            top: 4.7rem;
-            left: 50%;
-            border: none;
-            background: rgba(255, 255, 255, 0.92);
-            box-shadow:
-                -5.8rem -2.1rem 0 -0.9rem rgba(255, 255, 255, 0.62),
-                5rem 1.8rem 0 -1rem rgba(255, 255, 255, 0.7),
-                1.9rem -4.4rem 0 -1.08rem rgba(255, 255, 255, 0.62);
-        }
-
-        .atlas-card h2 {
-            margin: 0;
-            font-size: clamp(1.6rem, 3.2vw, 2.2rem);
-            line-height: 1.05;
-        }
-
-        .atlas-card p {
-            margin: 0.65rem 0 0;
-            color: rgba(255, 255, 255, 0.82);
-        }
-
-        .section-wrap {
-            padding: clamp(3rem, 8vw, 5rem) clamp(1.25rem, 5vw, 5rem);
-        }
-
-        .section-grid {
-            width: min(1180px, 100%);
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 1rem;
-        }
-
-        .placeholder {
-            min-height: 13rem;
-            padding: 1.35rem;
-            border: 1px solid rgba(20, 33, 61, 0.08);
-            border-radius: 0.5rem;
-            background: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 14px 38px rgba(20, 33, 61, 0.08);
-        }
-
-        .placeholder h2 {
-            margin: 0 0 0.75rem;
-            font-size: 1.15rem;
-            line-height: 1.25;
-        }
-
-        .placeholder p {
-            margin: 0;
-            color: var(--ink-soft);
-            font-size: 0.97rem;
-        }
-
-        .placeholder-number {
-            display: inline-grid;
-            width: 2rem;
-            height: 2rem;
-            margin-bottom: 1.2rem;
-            place-items: center;
-            border-radius: 50%;
-            color: var(--white);
-            font-weight: 900;
-            background: var(--leaf);
-        }
-
-        .background-section {
-            padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(3rem, 8vw, 5rem);
-        }
-
-        .background-inner {
-            width: min(1180px, 100%);
-            margin: 0 auto;
-        }
-
-        .background-header {
-            max-width: 780px;
-            margin-bottom: 1.5rem;
-        }
-
-        .background-header h2 {
-            margin: 0;
-            font-size: clamp(2rem, 4.8vw, 4rem);
-            line-height: 1;
-        }
-
-        .background-topic {
-            margin-top: 1rem;
-            padding: clamp(1.25rem, 4vw, 2.4rem);
-            border: 1px solid rgba(20, 33, 61, 0.08);
-            border-radius: 0.75rem;
-            background: rgba(255, 255, 255, 0.74);
-            box-shadow: 0 16px 44px rgba(20, 33, 61, 0.09);
-        }
-
-        .background-topic h3 {
-            margin: 0 0 0.75rem;
-            font-size: clamp(1.6rem, 3.2vw, 2.45rem);
-            line-height: 1.05;
-        }
-
-        .background-topic h4 {
-            margin: 1.5rem 0 0.65rem;
-            color: var(--leaf);
-            font-size: clamp(1.15rem, 2vw, 1.45rem);
-        }
-
-        .background-topic p {
-            margin: 0;
-            color: var(--ink-soft);
-            font-size: 1.03rem;
-        }
-
-        .background-topic p + p {
-            margin-top: 1rem;
-        }
-
-        .topic-split {
-            display: grid;
-            grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 0.65fr);
-            gap: clamp(1.25rem, 4vw, 2.5rem);
-            align-items: start;
-        }
-
-        .discovery-layout {
-            display: grid;
-            gap: 1.4rem;
-        }
-
-        .figure-stack {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .discovery-figures {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .figure-card {
-            overflow: hidden;
-            border: 1px solid rgba(20, 33, 61, 0.08);
-            border-radius: 0.65rem;
-            background: var(--white);
-            box-shadow: 0 14px 32px rgba(20, 33, 61, 0.1);
-        }
-
-        .figure-card img {
-            display: block;
-            width: 100%;
-            height: auto;
-            cursor: zoom-in;
-        }
-
-        .figure-card figcaption {
-            padding: 0.75rem 0.9rem;
-            color: var(--ink-soft);
-            font-size: 0.92rem;
-            font-weight: 700;
-        }
-
-        .pathway-image {
-            margin-top: 1.2rem;
-        }
-
-        .pathway-layout {
-            display: grid;
-            grid-template-columns: minmax(0, 0.9fr) minmax(20rem, 0.62fr);
-            gap: clamp(1.25rem, 4vw, 2.5rem);
-            align-items: start;
-        }
-
-        .pathway-layout .pathway-image {
-            margin-top: 0;
-        }
-
-        .pathway-image img {
-            max-height: 42rem;
-            object-fit: contain;
-            background: var(--white);
-        }
-
-        .lab-section {
-            padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(3rem, 8vw, 5rem);
-        }
-
-        .lab-inner {
-            width: min(1180px, 100%);
-            margin: 0 auto;
-        }
-
-        .section-heading {
-            display: flex;
-            align-items: end;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-heading h2 {
-            margin: 0;
-            font-size: clamp(1.8rem, 4vw, 3.2rem);
-            line-height: 1;
-        }
-
-        .section-heading p {
-            max-width: 42rem;
-            margin: 0.55rem 0 0;
-            color: var(--ink-soft);
-        }
-
-        .open-link {
-            flex: 0 0 auto;
-            padding: 0.7rem 1rem;
-            border-radius: 999px;
-            color: var(--white);
-            font-weight: 800;
-            background: var(--leaf);
-            box-shadow: 0 12px 28px rgba(45, 106, 79, 0.2);
-        }
-
-        .lab-link-panel {
-            display: grid;
-            grid-template-columns: minmax(0, 0.86fr) minmax(18rem, 0.44fr);
-            gap: clamp(1.25rem, 4vw, 3rem);
-            align-items: center;
-            min-height: 24rem;
-            padding: clamp(1.25rem, 4vw, 3rem);
-            border: 1px solid rgba(20, 33, 61, 0.1);
-            border-radius: 0.65rem;
-            background:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.62)),
-                radial-gradient(circle at 88% 18%, rgba(212, 167, 44, 0.2), transparent 18rem),
-                radial-gradient(circle at 12% 82%, rgba(45, 106, 79, 0.18), transparent 18rem);
-            box-shadow: var(--shadow);
-        }
-
-        .lab-link-panel h3 {
-            margin: 0;
-            font-size: clamp(1.8rem, 4vw, 3.5rem);
-            line-height: 1;
-        }
-
-        .lab-link-panel p {
-            max-width: 42rem;
-            margin: 1rem 0 0;
-            color: var(--ink-soft);
-            font-size: 1.05rem;
-        }
-
-        .lab-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 1.6rem;
-        }
-
-        .secondary-link {
-            flex: 0 0 auto;
-            padding: 0.7rem 1rem;
-            border: 1px solid rgba(20, 33, 61, 0.14);
-            border-radius: 999px;
-            color: var(--ink);
-            font-weight: 800;
-            background: rgba(255, 255, 255, 0.72);
-        }
-
-        .lab-badge {
-            justify-self: end;
-            width: min(100%, 20rem);
-            aspect-ratio: 1;
-            display: grid;
-            place-items: center;
-            border-radius: 50%;
-            color: var(--white);
-            text-align: center;
-            background:
-                radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.32), transparent 4rem),
-                conic-gradient(from 160deg, var(--leaf), var(--gold), var(--coral), var(--leaf));
-            box-shadow: 0 24px 54px rgba(20, 33, 61, 0.18);
-        }
-
-        .lab-badge span {
-            display: block;
-            max-width: 12rem;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(2rem, 4vw, 3.8rem);
-            font-weight: 700;
-            line-height: 0.95;
-        }
-
-
-        .credits {
-            padding: 2rem clamp(1.25rem, 5vw, 5rem);
-            color: var(--white);
-            background: var(--ink);
-        }
-
-        .credits-inner {
-            width: min(1180px, 100%);
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-        }
-
-        .credits h2 {
-            margin: 0;
-            font-size: 1.1rem;
-        }
-
-        .credits p {
-            margin: 0;
-            color: rgba(255, 255, 255, 0.78);
-        }
-
-        .image-lightbox {
-            position: fixed;
-            inset: 0;
-            z-index: 100;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: clamp(1rem, 4vw, 3rem);
-            background: rgba(20, 33, 61, 0.86);
-        }
-
-        .image-lightbox.is-open {
-            display: flex;
-        }
-
-        .lightbox-content {
-            position: relative;
-            width: min(1100px, 100%);
-            max-height: 92vh;
-            display: grid;
-            gap: 0.75rem;
-        }
-
-        .lightbox-content img {
-            max-width: 100%;
-            max-height: 82vh;
-            justify-self: center;
-            border-radius: 0.65rem;
-            background: var(--white);
-            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
-        }
-
-        .lightbox-content p {
-            margin: 0;
-            color: var(--white);
-            font-weight: 800;
-            text-align: center;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -0.85rem;
-            right: -0.85rem;
-            width: 2.6rem;
-            height: 2.6rem;
-            border: 0;
-            border-radius: 50%;
-            color: var(--ink);
-            cursor: pointer;
-            font-size: 1.5rem;
-            font-weight: 900;
-            line-height: 1;
-            background: var(--white);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.26);
-        }
-
-        @media (max-width: 920px) {
-            .topbar {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-panel {
-                max-width: 32rem;
-            }
-
-            .section-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .topic-split {
-                grid-template-columns: 1fr;
-            }
-
-            .pathway-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .section-heading,
-            .credits-inner,
-            .lab-link-panel {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .lab-link-panel {
-                grid-template-columns: 1fr;
-            }
-
-            .lab-badge {
-                justify-self: start;
-                width: min(100%, 15rem);
-            }
-
-        }
-
-        @media (max-width: 620px) {
-            .hero {
-                min-height: auto;
-                padding-top: 2rem;
-            }
-
-            .hero::before {
-                inset: 0.65rem;
-                border-radius: 1.2rem;
-            }
-
-            .brand {
-                min-width: 0;
-            }
-
-            .section-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .discovery-figures {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>Home | Group 17 Rapamycin Atlas</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
     <div class="site-shell">
         <header class="topbar" aria-label="Project navigation">
-            <a class="brand" href="#home" aria-label="Go to home section">
+            <a class="brand" href="index.html" aria-label="Go to home page">
                 <span class="brand-mark" aria-hidden="true">17</span>
                 <span>Rapamycin Atlas</span>
             </a>
-            <nav class="nav-scroll" aria-label="Main sections">
-                <a href="#home">Home</a>
-                <a href="#background">Background</a>
-                <a href="#experimental-design">Experimental Design</a>
-                <a href="#data-pipeline">Data Pipeline</a>
-                <a href="#results-discussion">Results and Discussion</a>
-                <a href="#future">Future</a>
-                <a href="#team">Team</a>
-                <a href="#lab">Lab</a>
-                <a href="#reference">Reference</a>
+            <nav class="nav-scroll" aria-label="Main pages">
+                <a href="index.html" class="is-active" aria-current="page">Home</a>
+                <a href="background.html">Background</a>
+                <a href="experimental-design.html">Experimental Design</a>
+                <a href="data-pipeline.html">Data Pipeline</a>
+                <a href="results-discussion.html">Results and Discussion</a>
+                <a href="future.html">Future</a>
+                <a href="team.html">Team</a>
+                <a href="lab.html">Lab</a>
+                <a href="reference.html">Reference</a>
             </nav>
         </header>
-
         <main>
             <section class="hero" id="home">
                 <div class="hero-content">
@@ -743,144 +54,56 @@
                 </div>
             </section>
 
-            <section class="section-wrap" aria-label="Page placeholders">
+            <section class="section-wrap" aria-label="Website pages">
                 <div class="section-grid">
-                    <article class="placeholder">
+                    <a class="placeholder" href="index.html">
                         <span class="placeholder-number">1</span>
                         <h2>Home</h2>
                         <p>The title page anchors the website and introduces the project identity.</p>
-                    </article>
-                    <article class="placeholder">
+                    </a>
+                    <a class="placeholder" href="background.html">
                         <span class="placeholder-number">2</span>
                         <h2>Background</h2>
                         <p>Aging biology, rapamycin discovery, and the mTORC1 pathway context for this project.</p>
-                    </article>
-                    <article class="placeholder" id="experimental-design">
+                    </a>
+                    <a class="placeholder" href="experimental-design.html">
                         <span class="placeholder-number">3</span>
                         <h2>Experimental Design</h2>
                         <p>Placeholder for sample groups, organ selection, treatment conditions, controls, and study timeline.</p>
-                    </article>
-                    <article class="placeholder" id="data-pipeline">
+                    </a>
+                    <a class="placeholder" href="data-pipeline.html">
                         <span class="placeholder-number">4</span>
                         <h2>Data Pipeline</h2>
                         <p>Placeholder for preprocessing, normalization, statistical testing, annotation, and visualization steps.</p>
-                    </article>
-                    <article class="placeholder" id="results-discussion">
+                    </a>
+                    <a class="placeholder" href="results-discussion.html">
                         <span class="placeholder-number">5</span>
                         <h2>Results and Discussion</h2>
                         <p>Placeholder for metabolite trends, pathway interpretation, organ comparisons, and biological insights.</p>
-                    </article>
-                    <article class="placeholder" id="future">
+                    </a>
+                    <a class="placeholder" href="future.html">
                         <span class="placeholder-number">6</span>
                         <h2>Future</h2>
                         <p>Placeholder for validation experiments, additional analyses, and project extensions.</p>
-                    </article>
-                    <article class="placeholder" id="team">
+                    </a>
+                    <a class="placeholder" href="team.html">
                         <span class="placeholder-number">7</span>
                         <h2>Team</h2>
                         <p>Placeholder for contributor roles, bios, and acknowledgments.</p>
-                    </article>
-                    <article class="placeholder">
+                    </a>
+                    <a class="placeholder" href="lab.html">
                         <span class="placeholder-number">8</span>
                         <h2>Lab</h2>
                         <p>Shi Lab people page and related lab context.</p>
-                    </article>
-                    <article class="placeholder" id="reference">
+                    </a>
+                    <a class="placeholder" href="reference.html">
                         <span class="placeholder-number">9</span>
                         <h2>Reference</h2>
                         <p>Placeholder for citations, papers, datasets, software, and image attribution.</p>
-                    </article>
-                </div>
-            </section>
-
-            <section class="background-section" id="background" aria-labelledby="background-title">
-                <div class="background-inner">
-                    <div class="background-header">
-                        <h2 id="background-title">Background</h2>
-                    </div>
-
-                    <article class="background-topic">
-                        <h3>Aging</h3>
-                        <p>Aging, also known as senescence, can cause genomic instability, mitochondrial dysfunction, and loss of proteostasis. These biological changes contribute to age-related diseases and conditions such as cancer, diabetes, declining immune function, atherosclerosis, and other disorders associated with the aging process.</p>
-                    </article>
-
-                    <article class="background-topic">
-                        <div class="discovery-layout">
-                            <div>
-                                <h3>Discovery</h3>
-                                <p>Rapamycin, a small-molecule drug, was isolated from <em>Streptomyces hygroscopicus</em> from Rapa Nui island in the 1970s. It was approved by the FDA to prevent rejection after organ transplantation in the late 1990s. More recently, researchers have been investigating rapamycin as a possible treatment for age-related diseases, but its effects across different organs as a whole are still not fully clear.</p>
-                            </div>
-                            <div class="figure-stack discovery-figures">
-                                <figure class="figure-card">
-                                    <img src="assets/background/images/rapa_nui.jpg" alt="Rapa Nui island landscape">
-                                    <figcaption>Rapa Nui island, also known as Easter Island.</figcaption>
-                                </figure>
-                                <figure class="figure-card">
-                                    <img src="assets/background/images/rapamycin_structure.png" alt="Chemical structure of rapamycin">
-                                    <figcaption>The chemical structure for Rapamycin.</figcaption>
-                                </figure>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="background-topic">
-                        <div class="pathway-layout">
-                            <div>
-                                <h3>Pathway</h3>
-
-                                <h4>mTOR overview</h4>
-                                <p>The mechanistic target of rapamycin pathway, or mTOR pathway, is a central regulator of cell growth, metabolism, and survival. This pathway functions through two major protein complexes: mTORC1 and mTORC2. In this project, the focus is primarily on mTORC1 because it is highly sensitive to acute rapamycin treatment, whereas mTORC2 is generally affected only after long-term or high-dose rapamycin exposure.</p>
-                                <p>mTORC1 acts as a major sensor of nutrient and energy abundance, integrating signals from amino acids, glucose, energy status, and growth factors to determine whether the cell should promote growth or conserve resources. Because of this role, rapamycin inhibition of mTORC1 can partially mimic calorie restriction: even when nutrient intake remains high, mTORC1 signaling is reduced, causing cells to shift toward a metabolic state more similar to low-nutrient conditions.</p>
-
-                                <h4>mTORC1 Protein Structure</h4>
-                                <p>Structurally, mTORC1 contains several core components. The central component is mTOR, a kinase that phosphorylates downstream targets to regulate cellular metabolism and biosynthesis. Raptor, or regulatory-associated protein of mTOR, is the defining scaffolding protein of mTORC1 and helps recruit downstream substrates for phosphorylation. mLST8 is a structural subunit shared by both mTORC1 and mTORC2 and contributes to the stability of the complex.</p>
-                                <p>Rapamycin inhibits mTORC1 by first binding to the intracellular protein FKBP12. The rapamycin-FKBP12 complex then interacts with the FRB domain of mTOR, leading to acute inhibition of mTORC1 activity.</p>
-
-                                <h4>Dive Deeper to mTORC1 Signaling</h4>
-                                <p>mTORC1 is activated by both growth factor and nutrient signaling. When growth factors are detected, the PI3K-AKT pathway becomes activated. AKT then phosphorylates and inhibits the TSC1/TSC2 complex, which normally acts as a negative regulator of mTORC1. When TSC1/TSC2 is inhibited, Rheb accumulates in its active GTP-bound form at the lysosomal surface, where it directly activates mTORC1. At the same time, amino acid sensing activates the Rag GTPases, which recruit mTORC1 to the lysosomal surface through interactions involving Raptor. This lysosomal localization allows mTORC1 to encounter active Rheb and become fully activated.</p>
-                                <p>Once activated, mTORC1 promotes anabolic metabolism. It phosphorylates ribosomal protein S6 kinase, or S6K, which enhances ribosome biogenesis and protein synthesis. It also phosphorylates 4E-BP1, causing the release of the translation initiation factor eIF4E and increasing cap-dependent translation. In addition, mTORC1 phosphorylates autophagy-related proteins such as ULK1 and ATG13, suppressing autophagy under nutrient-rich conditions. Through these downstream effects, active mTORC1 shifts the cell toward growth, protein synthesis, lipid synthesis, nucleotide production, and overall biosynthetic activity.</p>
-                            </div>
-                            <div class="figure-stack">
-                                <figure class="figure-card pathway-image">
-                                    <img src="assets/background/images/mTORC1_structure.png" alt="Simplified mTORC1 protein structure overview">
-                                    <figcaption>mTORC1 protein structure overview simplified.</figcaption>
-                                </figure>
-                                <figure class="figure-card pathway-image">
-                                    <img src="assets/background/images/mTORC1.png" alt="Overview of the mTORC1 signaling pathway">
-                                    <figcaption>The overview of mTORC1 signaling pathway.</figcaption>
-                                </figure>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </section>
-
-            <section class="lab-section" id="lab" aria-labelledby="lab-title">
-                <div class="lab-inner">
-                    <div class="section-heading">
-                        <div>
-                            <h2 id="lab-title">Lab</h2>
-                            <p>Project context and affiliation with the Shi Lab at UC San Diego.</p>
-                        </div>
-                        <a class="open-link" href="https://shi.eng.ucsd.edu/people" target="_blank" rel="noopener noreferrer">Open full site</a>
-                    </div>
-                    <div class="lab-link-panel">
-                        <div>
-                            <h3>Shi Lab People</h3>
-                            <p>Visit the official Shi Lab people page to learn more about the lab members, research environment, and UC San Diego bioengineering community connected to this project.</p>
-                            <div class="lab-actions">
-                                <a class="open-link" href="https://shi.eng.ucsd.edu/people" target="_blank" rel="noopener noreferrer">Visit Shi Lab</a>
-                                <a class="secondary-link" href="https://shi.eng.ucsd.edu/" target="_blank" rel="noopener noreferrer">Shi Lab Home</a>
-                            </div>
-                        </div>
-                        <div class="lab-badge" aria-hidden="true">
-                            <span>Shi Lab</span>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </section>
         </main>
-
         <footer class="credits" aria-labelledby="credits-title">
             <div class="credits-inner">
                 <h2 id="credits-title">Credits</h2>
@@ -895,40 +118,6 @@
             <p></p>
         </div>
     </div>
-    <script>
-        const lightbox = document.querySelector("#image-lightbox");
-        const lightboxImage = lightbox.querySelector("img");
-        const lightboxCaption = lightbox.querySelector("p");
-        const closeLightbox = lightbox.querySelector(".lightbox-close");
-
-        document.querySelectorAll(".figure-card img").forEach((image) => {
-            image.addEventListener("click", () => {
-                const caption = image.closest("figure")?.querySelector("figcaption")?.textContent || image.alt;
-                lightboxImage.src = image.src;
-                lightboxImage.alt = image.alt;
-                lightboxCaption.textContent = caption;
-                lightbox.classList.add("is-open");
-                lightbox.setAttribute("aria-hidden", "false");
-            });
-        });
-
-        function hideLightbox() {
-            lightbox.classList.remove("is-open");
-            lightbox.setAttribute("aria-hidden", "true");
-            lightboxImage.src = "";
-        }
-
-        closeLightbox.addEventListener("click", hideLightbox);
-        lightbox.addEventListener("click", (event) => {
-            if (event.target === lightbox) {
-                hideLightbox();
-            }
-        });
-        document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
-                hideLightbox();
-            }
-        });
-    </script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

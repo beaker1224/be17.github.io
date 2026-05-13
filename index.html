@@ -319,6 +319,85 @@
             background: var(--leaf);
         }
 
+        .lab-section {
+            padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(3rem, 8vw, 5rem);
+        }
+
+        .lab-inner {
+            width: min(1180px, 100%);
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: clamp(1.8rem, 4vw, 3.2rem);
+            line-height: 1;
+        }
+
+        .section-heading p {
+            max-width: 42rem;
+            margin: 0.55rem 0 0;
+            color: var(--ink-soft);
+        }
+
+        .open-link {
+            flex: 0 0 auto;
+            padding: 0.7rem 1rem;
+            border-radius: 999px;
+            color: var(--white);
+            font-weight: 800;
+            background: var(--leaf);
+            box-shadow: 0 12px 28px rgba(45, 106, 79, 0.2);
+        }
+
+        .lab-frame-wrap {
+            overflow: hidden;
+            border: 1px solid rgba(20, 33, 61, 0.1);
+            border-radius: 0.65rem;
+            background: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .lab-frame {
+            display: block;
+            width: 100%;
+            min-height: 72vh;
+            border: 0;
+        }
+
+        .credits {
+            padding: 2rem clamp(1.25rem, 5vw, 5rem);
+            color: var(--white);
+            background: var(--ink);
+        }
+
+        .credits-inner {
+            width: min(1180px, 100%);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .credits h2 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .credits p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
         @media (max-width: 920px) {
             .topbar {
                 align-items: flex-start;
@@ -335,6 +414,12 @@
 
             .section-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .section-heading,
+            .credits-inner {
+                align-items: flex-start;
+                flex-direction: column;
             }
         }
 
@@ -444,14 +529,38 @@
                         <h2>Team</h2>
                         <p>Placeholder for contributor roles, bios, and acknowledgments.</p>
                     </article>
-                    <article class="placeholder" id="lab">
+                    <article class="placeholder">
                         <span class="placeholder-number">8</span>
                         <h2>Lab</h2>
-                        <p>Placeholder for lab affiliation, resources, and related research links.</p>
+                        <p>Embedded Shi Lab people page and related lab context.</p>
                     </article>
                 </div>
             </section>
+
+            <section class="lab-section" id="lab" aria-labelledby="lab-title">
+                <div class="lab-inner">
+                    <div class="section-heading">
+                        <div>
+                            <h2 id="lab-title">Lab</h2>
+                            <p>Explore the Shi Lab people page from UC San Diego directly inside this project site.</p>
+                        </div>
+                        <a class="open-link" href="https://shi.eng.ucsd.edu/people" target="_blank" rel="noopener noreferrer">Open full site</a>
+                    </div>
+                    <div class="lab-frame-wrap">
+                        <iframe class="lab-frame" src="https://shi.eng.ucsd.edu/people" title="Shi Lab people page">
+                            <a href="https://shi.eng.ucsd.edu/people">Open the Shi Lab people page</a>
+                        </iframe>
+                    </div>
+                </div>
+            </section>
         </main>
+
+        <footer class="credits" aria-labelledby="credits-title">
+            <div class="credits-inner">
+                <h2 id="credits-title">Credits</h2>
+                <p>Credit to Codex for website building and credit to BioRender for image generation.</p>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

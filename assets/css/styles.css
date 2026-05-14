@@ -62,15 +62,11 @@
             letter-spacing: 0.02em;
         }
 
-        .brand-mark {
-            display: grid;
-            width: 2.25rem;
-            height: 2.25rem;
-            place-items: center;
-            border-radius: 50%;
-            color: var(--white);
-            background: conic-gradient(from 180deg, var(--leaf), var(--gold), var(--coral), var(--leaf));
-            box-shadow: 0 10px 24px rgba(45, 106, 79, 0.28);
+        .brand-logo {
+            display: block;
+            width: 2.65rem;
+            height: 2.65rem;
+            object-fit: contain;
         }
 
         .nav-scroll {

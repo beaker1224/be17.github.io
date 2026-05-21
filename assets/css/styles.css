@@ -501,6 +501,22 @@
             margin-top: 1.2rem;
         }
 
+        .team-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .team-person {
+            padding: 1rem;
+            border: 1px solid rgba(20, 33, 61, 0.08);
+            border-radius: 0.65rem;
+            color: var(--ink);
+            font-weight: 900;
+            background: rgba(255, 255, 255, 0.78);
+        }
+
         .lab-section {
             padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(3rem, 8vw, 5rem);
         }
@@ -765,6 +781,10 @@
             }
 
             .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-list {
                 grid-template-columns: 1fr;
             }
         }

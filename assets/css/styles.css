@@ -464,6 +464,31 @@
             margin-top: 1.2rem;
         }
 
+        .video-callout {
+            margin-top: 1.4rem;
+            color: var(--ink);
+            font-weight: 900;
+        }
+
+        .video-embed {
+            overflow: hidden;
+            margin-top: 0.8rem;
+            border: 1px solid rgba(20, 33, 61, 0.08);
+            border-radius: 0.75rem;
+            background: var(--white);
+            box-shadow: 0 14px 32px rgba(20, 33, 61, 0.1);
+        }
+
+        .video-embed iframe {
+            display: block;
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            max-height: 42rem;
+            margin: 0 auto;
+            border: 0;
+            background: #000000;
+        }
+
         .results-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));

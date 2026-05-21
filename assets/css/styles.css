@@ -161,8 +161,8 @@
             max-width: 980px;
             margin: 0;
             font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(2.55rem, 6.4vw, 6.7rem);
-            line-height: 0.96;
+            font-size: clamp(2.2rem, 4.3vw, 4.65rem);
+            line-height: 1.03;
             letter-spacing: 0;
         }
 
@@ -460,7 +460,8 @@
             margin-top: 1.2rem;
         }
 
-        .overview-figure {
+        .overview-figures {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             margin-top: 1.2rem;
         }
 
@@ -756,6 +757,10 @@
             }
 
             .organ-figures {
+                grid-template-columns: 1fr;
+            }
+
+            .overview-figures {
                 grid-template-columns: 1fr;
             }
 

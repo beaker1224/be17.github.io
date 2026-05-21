@@ -779,3 +779,127 @@
         .placeholder {
             display: block;
         }
+
+        .reference-browser {
+            padding: clamp(1.25rem, 4vw, 2.4rem);
+            border: 1px solid rgba(20, 33, 61, 0.08);
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.74);
+            box-shadow: 0 16px 44px rgba(20, 33, 61, 0.09);
+        }
+
+        .reference-toolbar {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(13rem, 0.28fr);
+            gap: 0.9rem;
+            align-items: end;
+        }
+
+        .reference-toolbar label {
+            display: grid;
+            gap: 0.35rem;
+            color: var(--ink);
+            font-size: 0.86rem;
+            font-weight: 900;
+        }
+
+        .reference-toolbar input,
+        .reference-toolbar select {
+            width: 100%;
+            min-height: 2.85rem;
+            padding: 0.7rem 0.85rem;
+            border: 1px solid rgba(20, 33, 61, 0.16);
+            border-radius: 0.5rem;
+            color: var(--ink);
+            font: inherit;
+            background: var(--white);
+        }
+
+        .reference-summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin: 1rem 0;
+            color: var(--ink-soft);
+            font-weight: 800;
+        }
+
+        .reference-summary a {
+            color: var(--leaf);
+        }
+
+        .reference-list {
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .reference-card {
+            padding: 1.1rem;
+            border: 1px solid rgba(20, 33, 61, 0.08);
+            border-radius: 0.65rem;
+            background: rgba(255, 255, 255, 0.86);
+        }
+
+        .reference-card h2 {
+            margin: 0;
+            font-size: clamp(1.05rem, 2vw, 1.35rem);
+            line-height: 1.25;
+        }
+
+        .reference-meta {
+            margin: 0.45rem 0 0;
+            color: var(--ink-soft);
+            font-weight: 750;
+        }
+
+        .reference-abstract {
+            margin: 0.75rem 0 0;
+            color: var(--ink-soft);
+        }
+
+        .reference-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin-top: 0.9rem;
+        }
+
+        .reference-actions a,
+        .reference-type-pill {
+            display: inline-flex;
+            align-items: center;
+            min-height: 2rem;
+            padding: 0.38rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.86rem;
+            font-weight: 900;
+        }
+
+        .reference-actions a {
+            color: var(--white);
+            background: var(--leaf);
+        }
+
+        .reference-type-pill {
+            color: var(--leaf);
+            background: rgba(45, 106, 79, 0.1);
+        }
+
+        .reference-error {
+            margin: 1rem 0 0;
+            color: var(--coral);
+            font-weight: 800;
+        }
+
+        @media (max-width: 720px) {
+            .reference-toolbar,
+            .reference-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .reference-summary {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }

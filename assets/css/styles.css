@@ -308,9 +308,40 @@
             background: var(--leaf);
         }
 
+        .home-video-section {
+            padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(3rem, 8vw, 5rem);
+        }
+
+        .home-video-inner {
+            width: min(1180px, 100%);
+            margin: 0 auto;
+        }
+
+        .home-video-inner h2 {
+            margin: 0 0 1rem;
+            font-size: clamp(1.8rem, 4vw, 3.2rem);
+            line-height: 1;
+        }
+
+        .home-video-frame {
+            overflow: hidden;
+            border: 1px solid rgba(20, 33, 61, 0.08);
+            border-radius: 0.75rem;
+            background: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .home-video-frame video {
+            display: block;
+            width: 100%;
+            max-height: 78vh;
+            background: #000000;
+        }
+
         .background-section {
             padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(3rem, 8vw, 5rem);
         }
+
 
         .background-inner {
             width: min(1180px, 100%);

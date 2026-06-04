@@ -315,6 +315,7 @@
         .home-video-inner {
             width: min(1180px, 100%);
             margin: 0 auto;
+            text-align: center;
         }
 
         .home-video-inner h2 {
@@ -325,6 +326,8 @@
 
         .home-video-frame {
             overflow: hidden;
+            width: min(920px, 100%);
+            margin: 0 auto;
             border: 1px solid rgba(20, 33, 61, 0.08);
             border-radius: 0.75rem;
             background: var(--white);
